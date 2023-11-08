@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "fuo_new_ui"
+version = "0.1.0"
+description = ""
+authors = ["Bruce Zhang <zttt183525594@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.13"
+pyside6 = "^6.6.0"
+feeluown = "^3.8.15"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.plugins."fuo.plugins_v1"]
+"new_ui" = "fuo_new_ui"
