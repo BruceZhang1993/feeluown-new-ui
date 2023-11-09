@@ -10,6 +10,11 @@ python = ">=3.11,<3.13"
 pyside6 = "^6.6.0"
 feeluown = {git = "https://github.com/feeluown/FeelUOwn.git"}
 pydantic = "^2.4.2"
+aiohttp = "^3.8.6"
+
+[tool.poetry.group.dev.dependencies]
+sanic = "^23.6.0"
+websockets = "^12.0"
 
 [build-system]
 requires = ["poetry-core"]

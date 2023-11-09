@@ -12,7 +12,7 @@ from PySide6.QtWidgets import QApplication
 
 from fuo_new_ui import const
 from fuo_new_ui.config import ConfigManager
-from fuo_new_ui.daemon import FuoDaemon
+from fuo_new_ui.context import PlayerContext
 from fuo_new_ui.model.config import GuiConfig
 
 
@@ -30,6 +30,8 @@ class FuoApp(QApplication):
     def set_up_engine(self):
         self._engine = QQmlApplicationEngine()
         self._proxy_config = GuiConfig.QProxy(self._gui_config)
+        self._player_context = PlayerContext()
+        self._engine.rootContext().setContextProperty('player', self._player_context)
         self._engine.rootContext().setContextProperty('config', self._proxy_config)
         self._engine.quit.connect(self.quit)
 
@@ -59,7 +61,6 @@ class FuoApp(QApplication):
 
         future = asyncio.Future()
         self.aboutToQuit.connect(functools.partial(close_future, future))
-
         pkg_root_dir = Path(__file__).parent
         main_qml = pkg_root_dir / 'gui' / 'qml' / 'main.qml'
         self._engine.load(main_qml)
