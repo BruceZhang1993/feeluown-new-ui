@@ -12,6 +12,7 @@ from PySide6.QtWidgets import QApplication
 
 from fuo_new_ui import const
 from fuo_new_ui.config import ConfigManager
+from fuo_new_ui.daemon import FuoDaemon
 from fuo_new_ui.model.config import GuiConfig
 
 

@@ -1,5 +1,4 @@
 import asyncio
-import signal
 import sys
 
 import qasync

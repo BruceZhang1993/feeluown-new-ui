@@ -14,13 +14,5 @@ class FuoDaemon:
         args = create_cli_parser().parse_args()
         self._arg, self._config = before_start_app(args)
 
-    async def run_as_daemon(self):
-        self._task = asyncio.create_task(self.run())
-
-    async def stop_daemon(self):
-        if self._task is None:
-            return
-        self._task.cancel()
-
     async def run(self):
         await start_app(self._arg, self._config)
