@@ -30,11 +30,6 @@ class PlayerContext(QObject):
 
     @status.setter
     def status(self, value):
-        if value is not None:
-            position = int(value['position'])
-            duration = int(value['duration'])
-            value['position_str'] = str(datetime.timedelta(seconds=position))
-            value['duration_str'] = str(datetime.timedelta(seconds=duration))
         self._status = value
         self.status_change.emit()
 

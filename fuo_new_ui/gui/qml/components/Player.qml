@@ -83,7 +83,18 @@ ColumnLayout {
             Layout.fillWidth: true
 
             Text {
-                text: (player ? player.status.position_str : "") + " / " + (player ? player.status.duration_str : "")
+                function formatDate(timestamp) {
+                    var dateObj = new Date(timestamp * 1000);
+                    var hours = dateObj.getUTCHours();
+                    var minutes = dateObj.getUTCMinutes();
+                    var seconds = dateObj.getSeconds();
+
+                    return hours.toString().padStart(2, '0') + ':' +
+                    minutes.toString().padStart(2, '0') + ':' +
+                    seconds.toString().padStart(2, '0');
+                }
+
+                text: formatDate(progressBar.value) + " / " + formatDate(progressBar.to)
             }
         }
 
