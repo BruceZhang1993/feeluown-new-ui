@@ -8,11 +8,18 @@ import QtQml
 ColumnLayout {
     Layout.fillWidth: true
     Layout.preferredHeight: 80
-    Layout.maximumHeight: 80
+    Layout.maximumHeight: 95
     spacing: 0
 
     RowLayout {
         Layout.fillHeight: true
+
+        Image {
+            source: "../../../asset/image/cover.png"
+            fillMode: Image.PreserveAspectCrop
+            Layout.preferredHeight: 80
+            Layout.preferredWidth: 80
+        }
 
         Text {
             text: player ? (player.status.song.title + " -- " + player.status.song.artists_name) : ""

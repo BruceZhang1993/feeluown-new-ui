@@ -45,7 +45,7 @@ ApplicationWindow {
         Rectangle {
             color: "transparent"
             Layout.fillWidth: true
-            Layout.preferredHeight: 30
+            Layout.preferredHeight: 25
 
             Text {
                 id: innerLyric
