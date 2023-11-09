@@ -8,12 +8,9 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = ">=3.11,<3.13"
 pyside6 = "^6.6.0"
-feeluown = "^3.8.15"
-
+feeluown = {git = "https://github.com/feeluown/FeelUOwn.git"}
+pydantic = "^2.4.2"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
-
-[tool.poetry.plugins."fuo.plugins_v1"]
-"new_ui" = "fuo_new_ui"

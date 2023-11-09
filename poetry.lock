@@ -127,9 +127,8 @@ version = "3.8.15"
 description = "*nix music player"
 optional = false
 python-versions = ">=3.8"
-files = [
-    {file = "feeluown-3.8.15.tar.gz", hash = "sha256:c04d717a795e77b80e9a4b94eb90c44cbcf0c4f5b5384feb266d750fff32ba45"},
-]
+files = []
+develop = false
 
 [package.dependencies]
 janus = "*"
@@ -146,7 +145,14 @@ cookies = ["pycryptodome", "secretstorage"]
 dev = ["flake8", "mypy", "pylint", "pyqt5-stubs", "pytest (>=5.4.0)", "pytest-asyncio", "pytest-benchmark (>=3.4.1)", "pytest-cov", "pytest-mock", "pytest-qt", "pytest-runner", "sphinx", "sphinx_rtd_theme"]
 macos = ["aionowplaying (>=0.9.4)"]
 webengine = ["PyQtWebEngine"]
+webserver = ["sanic", "websockets"]
 win32 = ["aionowplaying (>=0.9.4)", "pyshortcuts"]
+
+[package.source]
+type = "git"
+url = "https://github.com/feeluown/FeelUOwn.git"
+reference = "HEAD"
+resolved_reference = "d755c880a0b310c037ac3e4c69c8aa205d33b266"
 
 [[package]]
 name = "idna"
@@ -470,4 +476,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.11,<3.13"
-content-hash = "d69688b841f231b585b82c3f97588eed1f5cad83f67c52bfffdbb5d6c5ad09ec"
+content-hash = "1800e2c660b5f9dd3b1527ac70632df2fbe4c5eaf03b3c18a81692031a85a22e"
