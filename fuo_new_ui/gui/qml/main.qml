@@ -3,6 +3,7 @@ import QtQuick.Window 2.15
 import QtQuick.Layouts 1.15
 import QtQuick.Controls 2.15
 import QtQuick.Controls.Material 2.15
+import QtWebSockets 1.6
 import "./components"
 
 ApplicationWindow {
@@ -42,5 +43,18 @@ ApplicationWindow {
         }
 
         Player {}
+    }
+
+    WebSocket {
+        active: true
+        url: "ws://127.0.0.1:23332/signal/v1"
+        onStatusChanged: console.log(status)
+        onTextMessageReceived: (msg) => {
+            console.log(msg)
+            var object = JSON.parse(msg);
+            if (object.topic == "player.state_changed") {
+                player.updateState()
+            }
+        }
     }
 }

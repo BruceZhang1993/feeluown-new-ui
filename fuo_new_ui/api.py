@@ -11,5 +11,6 @@ class FuoApi:
     def status(self):
         with self._session.get(self.BASE_URI + '/api/v1/status') as r:
             data = r.json()['data']
+            print(data)
             self._context.status = data
         return

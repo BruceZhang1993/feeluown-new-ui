@@ -1,6 +1,6 @@
 import asyncio
 
-from PySide6.QtCore import QObject, Property, Signal
+from PySide6.QtCore import QObject, Property, Signal, Slot
 from feeluown.utils import aio
 
 from fuo_new_ui.api import FuoApi
@@ -24,3 +24,7 @@ class PlayerContext(QObject):
     def status(self, value):
         self._status = value
         self.status_change.emit()
+
+    @Slot()
+    def updateState(self):
+        self._api.status()

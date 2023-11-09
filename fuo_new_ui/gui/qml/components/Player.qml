@@ -10,13 +10,24 @@ ColumnLayout {
     Layout.maximumHeight: 80
     spacing: 0
 
-    Text {
-        text: player ? (player.status.song.title + " -- " + player.status.song.artists_name) : ""
-    }
+    RowLayout {
+        Layout.fillHeight: true
 
-    Button {
-        text: "Toggle"
-        onClicked: player.toggle()
+        Text {
+            text: player ? (player.status.song.title + " -- " + player.status.song.artists_name) : ""
+        }
+
+        Button {
+            text: player ? (player.status.state) : "--"
+            onClicked: player.toggle()
+        }
+
+        Slider {
+            Layout.alignment: Qt.AlignRight
+            from: 0
+            value: player ? player.status.volume : 0
+            to: 100
+        }
     }
 
     ProgressBar {
@@ -26,6 +37,11 @@ ColumnLayout {
         value: player ? player.status.position : 0
         Layout.fillWidth: true
         Layout.preferredHeight: hoverHandler.hovered ? 15 : 4;
+
+        ToolTip {
+            visible: hoverHandler.hovered
+            text: progressBar.value + " / " + progressBar.to
+        }
 
         Behavior on Layout.preferredHeight {
             NumberAnimation { duration: 400 }
@@ -44,7 +60,7 @@ ColumnLayout {
                 width: progressBar.visualPosition * parent.width
                 height: parent.height
                 radius: 2
-                color: "orange"
+                color: Material.accent
 
                 Behavior on width {
                     NumberAnimation { duration: 400 }
