@@ -11,7 +11,7 @@ ApplicationWindow {
     visible: true
     width: Screen.width / 1.8
     height: Screen.height / 1.5
-    title: "FeelUOwn"
+    title: player ? player.const["APP_NAME"] : ""
 
     property bool darkMode: systemPalette.windowText.hsvValue > systemPalette.window.hsvValue
     Material.theme: darkMode ? Material.Dark : Material.Light
