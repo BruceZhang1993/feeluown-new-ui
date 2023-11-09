@@ -1,30 +1,35 @@
 import asyncio
 import functools
+import signal
+import sys
 from pathlib import Path
 from typing import Optional
 
 from PySide6.QtCore import QDir
-from PySide6.QtGui import QGuiApplication, QPixmap, QIcon
+from PySide6.QtGui import QPixmap, QIcon
 from PySide6.QtQml import QQmlApplicationEngine
+from PySide6.QtWidgets import QApplication
 
 from fuo_new_ui import const
 from fuo_new_ui.config import ConfigManager
 from fuo_new_ui.model.config import GuiConfig
 
 
-class FuoApp(QGuiApplication):
+class FuoApp(QApplication):
     def __init__(self):
-        super().__init__()
+        super().__init__(sys.argv)
         self._config_manager = None
         self._gui_config: Optional[GuiConfig] = None
         self._engine: Optional[QQmlApplicationEngine] = None
         self.set_search_paths()
-        self.set_up_application()
         self.set_up_config()
+        self.set_up_application()
         self.set_up_engine()
 
     def set_up_engine(self):
         self._engine = QQmlApplicationEngine()
+        self._proxy_config = GuiConfig.QProxy(self._gui_config)
+        self._engine.rootContext().setContextProperty('config', self._proxy_config)
         self._engine.quit.connect(self.quit)
 
     def set_up_config(self):
@@ -34,7 +39,7 @@ class FuoApp(QGuiApplication):
     def set_up_application(self):
         self.setWindowIcon(QIcon(QPixmap('icons:feeluown.png')))
         self.setDesktopFileName(const.APP_NAME)
-        self.setQuitOnLastWindowClosed(True)
+        self.setQuitOnLastWindowClosed(not self._gui_config.tray_enable)
         if const.IS_WINDOWS:
             font = self.font()
             font.setFamilies(['Segoe UI Symbol', 'Microsoft YaHei', 'sans-serif'])
