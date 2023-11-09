@@ -81,6 +81,10 @@ ColumnLayout {
 
         Rectangle {
             Layout.fillWidth: true
+
+            Text {
+                text: (player ? player.status.position_str : "") + " / " + (player ? player.status.duration_str : "")
+            }
         }
 
         RowLayout {
