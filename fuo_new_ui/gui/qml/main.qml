@@ -31,7 +31,7 @@ ApplicationWindow {
             Layout.fillHeight: true
 
             Rectangle {
-                color: "blue"
+                color: Material.primary
                 Layout.fillHeight: true
                 Layout.preferredWidth: 200
             }
@@ -39,6 +39,19 @@ ApplicationWindow {
             Rectangle {
                 Layout.fillHeight: true
                 Layout.fillWidth: true
+            }
+        }
+
+        Rectangle {
+            color: "transparent"
+            Layout.fillWidth: true
+            Layout.preferredHeight: 30
+
+            Text {
+                id: innerLyric
+                anchors.horizontalCenter: parent.horizontalCenter
+                text: player ? player.status["lyric-s"] : ""
+                horizontalAlignment: Text.AlignCenter
             }
         }
 
@@ -54,6 +67,8 @@ ApplicationWindow {
             var object = JSON.parse(msg);
             if (object.topic == "player.state_changed") {
                 player.updateState()
+            } else if (object.topic == "live_lyric") {
+                innerLyric.text = object.data
             }
         }
     }

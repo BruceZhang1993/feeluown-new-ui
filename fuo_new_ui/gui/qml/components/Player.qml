@@ -3,6 +3,7 @@ import QtQuick.Window 2.15
 import QtQuick.Layouts 1.15
 import QtQuick.Controls 2.15
 import QtQuick.Controls.Material 2.15
+import QtQml
 
 ColumnLayout {
     Layout.fillWidth: true
@@ -33,14 +34,16 @@ ColumnLayout {
     ProgressBar {
         id: progressBar
         from: 0
-        to: player ? player.status.duration : 0
+        to: player ? player.status.duration : 1
         value: player ? player.status.position : 0
         Layout.fillWidth: true
         Layout.preferredHeight: hoverHandler.hovered ? 15 : 4;
 
-        ToolTip {
-            visible: hoverHandler.hovered
-            text: progressBar.value + " / " + progressBar.to
+        Timer {
+            interval: 1000
+            running: (player ? (player.status.state) : "") == "playing"
+            repeat: true
+            onTriggered: progressBar.value += 1
         }
 
         Behavior on Layout.preferredHeight {
