@@ -59,9 +59,17 @@ ApplicationWindow {
     }
 
     WebSocket {
+        id: ws
         active: true
         url: "ws://127.0.0.1:23332/signal/v1"
-        onStatusChanged: console.log(status)
+
+        onStatusChanged: (status) => {
+            console.log(status)
+            if (status == WebSocket.Open) {
+                player.updateStatus()
+            }
+        }
+
         onTextMessageReceived: (msg) => {
             console.log(msg)
             var object = JSON.parse(msg);
@@ -70,6 +78,18 @@ ApplicationWindow {
             } else if (object.topic == "live_lyric") {
                 innerLyric.text = object.data
             }
+        }
+    }
+
+    Timer {
+        id: timer
+        repeat: true
+        interval: 5000
+        running: ws.status == WebSocket.Error
+        onTriggered: {
+            var url = ws.url
+            ws.url = ""
+            ws.url = url
         }
     }
 }
