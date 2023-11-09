@@ -66,7 +66,7 @@ ApplicationWindow {
         onStatusChanged: (status) => {
             console.log(status)
             if (status == WebSocket.Open) {
-                player.updateStatus()
+                player.updateState()
             }
         }
 
