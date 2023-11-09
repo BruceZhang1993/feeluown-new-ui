@@ -6,10 +6,13 @@ import QtQuick.Controls.Material 2.15
 import QtQml
 
 ColumnLayout {
+    id: playerMain
     Layout.fillWidth: true
     Layout.preferredHeight: 80
     Layout.maximumHeight: 95
     spacing: 0
+
+    property var playState: player ? (player.status.state) : "--"
 
     RowLayout {
         Layout.fillHeight: true
@@ -26,7 +29,8 @@ ColumnLayout {
         }
 
         Button {
-            text: player ? (player.status.state) : "--"
+            flat: true
+            text: playerMain.playState
             onClicked: player.toggle()
         }
 
@@ -48,7 +52,7 @@ ColumnLayout {
 
         Timer {
             interval: 1000
-            running: (player ? (player.status.state) : "") == "playing"
+            running: playerMain.playState == "playing"
             repeat: true
             onTriggered: progressBar.value += 1
         }
@@ -70,7 +74,7 @@ ColumnLayout {
                 width: progressBar.visualPosition * parent.width
                 height: parent.height
                 radius: 2
-                color: Material.accent
+                color: playerMain.playState == "playing" ? Material.accent : Material.color(Material.Grey)
 
                 Behavior on width {
                     NumberAnimation { duration: 400 }
