@@ -16,6 +16,7 @@ ColumnLayout {
 
     RowLayout {
         Layout.fillHeight: true
+        spacing: 10
 
         Image {
             source: "../../../asset/image/cover.png"
@@ -24,21 +25,95 @@ ColumnLayout {
             Layout.preferredWidth: 80
         }
 
-        Text {
-            text: player ? (player.status.song.title + " -- " + player.status.song.artists_name) : ""
+        ColumnLayout {
+            Layout.fillHeight: true
+            Layout.preferredWidth: 100
+            spacing: 3
+            Layout.alignment: Qt.AlignTop
+
+            Text {
+                font.pointSize: 12
+                topPadding: 4
+                text: player ? player.status.song.title : ""
+                font.bold: true
+                color: Material.color(Material.BlueGrey)
+            }
+
+            Text {
+                text: player ? player.status.song.artists_name : ""
+            }
+
+            Text {
+                bottomPadding: 4
+                Layout.fillHeight: true
+                verticalAlignment: Text.AlignBottom
+                text: player ? player.status.song.album_name : ""
+                color: Material.color(Material.Grey)
+            }
         }
 
-        Button {
+        RoundButton {
             flat: true
-            text: playerMain.playState
+            icon.source: "../../../asset/icon/prev.svg"
+            icon.color: Material.color(Material.Grey)
+            icon.width: 30
+            icon.height: 30
+            onClicked: player.prev()
+        }
+
+        RoundButton {
+            flat: true
+            icon.source: "../../../asset/icon/" + playerMain.playState + ".svg"
+            icon.color: Material.color(Material.Grey)
+            icon.width: 40
+            icon.height: 40
             onClicked: player.toggle()
         }
 
-        Slider {
+        RoundButton {
+            flat: true
+            icon.source: "../../../asset/icon/next.svg"
+            icon.color: Material.color(Material.Grey)
+            icon.width: 30
+            icon.height: 30
+            onClicked: player.next()
+        }
+
+        Rectangle {
+            Layout.fillWidth: true
+        }
+
+        RowLayout {
+            id: volumeSlider
+            Layout.fillHeight: true
             Layout.alignment: Qt.AlignRight
-            from: 0
-            value: player ? player.status.volume : 0
-            to: 100
+            Layout.rightMargin: 10
+
+            RoundButton {
+                flat: true
+                icon.source: "../../../asset/icon/volume.svg"
+                icon.color: Material.color(Material.Grey)
+                icon.width: 30
+                icon.height: 30
+                onClicked: player.silent()
+            }
+
+            Slider {
+                Layout.preferredWidth: volumeHover.hovered ? 160 : 0
+                Layout.alignment: Qt.AlignRight
+                from: 0
+                value: player ? player.status.volume : 0
+                to: 100
+                handle: null
+
+                Behavior on Layout.preferredWidth {
+                    NumberAnimation { duration: 400 }
+                }
+            }
+
+            HoverHandler {
+                id: volumeHover
+            }
         }
     }
 
