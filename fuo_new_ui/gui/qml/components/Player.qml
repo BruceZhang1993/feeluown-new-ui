@@ -12,7 +12,7 @@ ColumnLayout {
     Layout.maximumHeight: 95
     spacing: 0
 
-    property var playState: player ? (player.status.state) : "--"
+    property var playState: player ? (player.status.state) : null
 
     RowLayout {
         Layout.fillHeight: true
@@ -52,35 +52,9 @@ ColumnLayout {
             }
         }
 
-        RoundButton {
-            flat: true
-            icon.source: "../../../asset/icon/prev.svg"
-            icon.color: Material.color(Material.Grey)
-            icon.width: 30
-            icon.height: 30
-            onClicked: player.prev()
-        }
-
-        RoundButton {
-            flat: true
-            icon.source: "../../../asset/icon/" + playerMain.playState + ".svg"
-            icon.color: Material.color(Material.Grey)
-            icon.width: 40
-            icon.height: 40
-            onClicked: player.toggle()
-        }
-
-        RoundButton {
-            flat: true
-            icon.source: "../../../asset/icon/next.svg"
-            icon.color: Material.color(Material.Grey)
-            icon.width: 30
-            icon.height: 30
-            onClicked: player.next()
-        }
-
         Rectangle {
             Layout.fillWidth: true
+            Layout.fillHeight: true
 
             Text {
                 function formatDate(timestamp) {
@@ -94,8 +68,40 @@ ColumnLayout {
                     seconds.toString().padStart(2, '0');
                 }
 
+                anchors.bottom: parent.bottom
+                anchors.right: parent.right
                 text: formatDate(progressBar.value) + " / " + formatDate(progressBar.to)
+                verticalAlignment: Text.AlignBottom
+                horizontalAlignment: Text.AlignRight
+                padding: 4
             }
+        }
+
+        RoundButton {
+            flat: true
+            icon.source: "../../../asset/icon/prev.svg"
+            icon.color: Material.color(Material.Grey)
+            icon.width: 30
+            icon.height: 30
+            onClicked: player.prev()
+        }
+
+        RoundButton {
+            flat: true
+            icon.source: playState ? "../../../asset/icon/" + playerMain.playState + ".svg" : null
+            icon.color: Material.color(Material.Grey)
+            icon.width: 40
+            icon.height: 40
+            onClicked: player.toggle()
+        }
+
+        RoundButton {
+            flat: true
+            icon.source: "../../../asset/icon/next.svg"
+            icon.color: Material.color(Material.Grey)
+            icon.width: 30
+            icon.height: 30
+            onClicked: player.next()
         }
 
         RowLayout {
