@@ -55,7 +55,7 @@ ApplicationWindow {
             }
         }
 
-        Player {}
+        Player { id: playerItem }
     }
 
     WebSocket {
@@ -72,8 +72,9 @@ ApplicationWindow {
 
         onTextMessageReceived: (msg) => {
             console.log(msg)
-            var object = JSON.parse(msg);
-            if (object.topic == "player.state_changed") {
+            var object = JSON.parse(msg)
+            var needUpdateState = ["player.metadata_changed", "player.state_changed", "player.duration_changed", "player.seeked"]
+            if (needUpdateState.includes(object.topic)) {
                 player.updateState()
             } else if (object.topic == "live_lyric") {
                 innerLyric.text = object.data
