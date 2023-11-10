@@ -77,6 +77,8 @@ ApplicationWindow {
                 player.updateState()
             } else if (object.topic == "live_lyric") {
                 innerLyric.text = object.data
+            } else {
+                console.warn("Unhandled event topic: " + object.topic)
             }
         }
     }
