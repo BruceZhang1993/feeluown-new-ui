@@ -19,3 +19,6 @@ websockets = "^12.0"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+feeluown-gui = "fuo_new_ui.__main__:main"
