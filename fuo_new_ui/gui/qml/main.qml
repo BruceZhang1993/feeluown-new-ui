@@ -77,7 +77,8 @@ ApplicationWindow {
             if (needUpdateState.includes(object.topic)) {
                 player.updateState()
             } else if (object.topic == "live_lyric.sentence_changed") {
-                innerLyric.text = object.data
+                var data = JSON.parse(object.data)
+                innerLyric.text = data.join(" ")
             } else {
                 console.warn("Unhandled event topic: " + object.topic)
             }
