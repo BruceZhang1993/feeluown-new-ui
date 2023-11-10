@@ -51,6 +51,7 @@ ColumnLayout {
                 fillMode: Image.PreserveAspectCrop
                 Layout.preferredHeight: hoverHandler.hovered ? 80 : 90
                 Layout.preferredWidth: hoverHandler.hovered ? 80 : 90
+                smooth: true
 
                 Behavior on Layout.preferredHeight {
                     NumberAnimation { duration: 400 }
