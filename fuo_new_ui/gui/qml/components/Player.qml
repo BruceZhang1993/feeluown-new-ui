@@ -155,6 +155,7 @@ ColumnLayout {
                 flat: true
                 checkable: true
                 checked: playerMain.shuffle
+                down: playerMain.shuffle
                 icon.source: "../../../asset/icon/shuffle.svg"
                 icon.color: Material.color(Material.Grey)
                 icon.width: 26
@@ -166,6 +167,7 @@ ColumnLayout {
                 flat: true
                 checkable: true
                 checked: playerMain.repeat
+                down: playerMain.repeat
                 icon.source: "../../../asset/icon/repeat.svg"
                 icon.color: Material.color(Material.Grey)
                 icon.width: 26
