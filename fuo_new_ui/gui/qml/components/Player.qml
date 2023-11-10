@@ -242,7 +242,13 @@ ColumnLayout {
                 width: progressBar.visualPosition * parent.width
                 height: parent.height
                 radius: 2
-                color: playerMain.playState == "playing" ? Material.accent : Material.color(Material.Grey)
+                 color: playerMain.playState == "playing" ? Material.accent : Material.color(Material.Grey)
+                gradient: Gradient {
+                    orientation: Gradient.Horizontal
+                    GradientStop { position: 0.0; color: progressRect.color }
+                    GradientStop { position: 0.7; color: progressRect.color }
+                    GradientStop { position: 1.0; color: playerMain.playState == "playing" ? Material.color(Material.DeepOrange) : progressRect.color }
+                }
 
                 Behavior on width {
                     NumberAnimation { duration: 400 }
