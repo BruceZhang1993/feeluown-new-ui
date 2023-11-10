@@ -52,6 +52,8 @@ ColumnLayout {
                 Layout.preferredHeight: hoverHandler.hovered ? 80 : 90
                 Layout.preferredWidth: hoverHandler.hovered ? 80 : 90
                 smooth: true
+                sourceSize.width: 128
+                sourceSize.height: 128
 
                 Behavior on Layout.preferredHeight {
                     NumberAnimation { duration: 400 }
