@@ -36,3 +36,11 @@ class PlayerContext(QObject):
     @Slot()
     def updateState(self):
         self._api.status()
+
+    @Slot()
+    def pause(self):
+        self._api.pause()
+
+    @Slot()
+    def resume(self):
+        self._api.resume()

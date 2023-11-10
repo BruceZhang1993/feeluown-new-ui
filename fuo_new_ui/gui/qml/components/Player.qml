@@ -133,7 +133,13 @@ ColumnLayout {
                 icon.color: Material.color(Material.Grey)
                 icon.width: 40
                 icon.height: 40
-                onClicked: player.toggle()
+                onClicked: {
+                    if (playState == "playing") {
+                        player.pause()
+                    } else {
+                        player.resume()
+                    }
+                }
             }
 
             RoundButton {

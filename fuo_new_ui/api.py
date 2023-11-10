@@ -14,3 +14,13 @@ class FuoApi:
             print(data)
             self._context.status = data
         return
+
+    def pause(self):
+        with self._session.post(self.BASE_URI + '/api/v1/player/pause') as r:
+            print(r.json())
+            return
+
+    def resume(self):
+        with self._session.post(self.BASE_URI + '/api/v1/player/resume') as r:
+            print(r.json())
+            return
