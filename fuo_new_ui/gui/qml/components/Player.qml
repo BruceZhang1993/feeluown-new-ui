@@ -215,7 +215,7 @@ ColumnLayout {
 
                     AppToolTip {
                         tipText: parseInt(parent.value)
-                        timeout: 200
+                        timeout: 1800
                         visible: parent.pressed
                     }
                 }

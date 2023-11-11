@@ -58,9 +58,28 @@ ColumnLayout {
 
                 RoundButton {
                     flat: true
+                    icon.width: 20
+                    icon.height: 20
+                    icon.source: "../../../asset/icon/mv.svg"
+                    icon.color: Material.color(Material.Grey)
+                    AppToolTip { tipText: "MV"; visible: parent.hovered; }
+                }
+
+                RoundButton {
+                    flat: true
+                    icon.width: 20
+                    icon.height: 20
+                    icon.source: "../../../asset/icon/lrc.svg"
+                    icon.color: Material.color(Material.Grey)
+                    AppToolTip { tipText: "Lyrics"; visible: parent.hovered; }
+                }
+
+                RoundButton {
+                    flat: true
                     onClicked: playerFull.anchors.topMargin = playerFull.height
                     icon.width: 20
                     icon.height: 20
+                    icon.color: Material.color(Material.Grey)
                     icon.source: "../../../asset/icon/arrow-down.svg"
                 }
             }
@@ -220,7 +239,7 @@ ColumnLayout {
 
                         AppToolTip {
                             tipText: parseInt(parent.value)
-                            timeout: 200
+                            timeout: 1800
                             visible: parent.pressed
                         }
                     }
