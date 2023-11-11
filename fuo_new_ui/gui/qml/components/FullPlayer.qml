@@ -5,6 +5,7 @@ import QtQuick.Controls
 import QtQuick.Controls.Material
 import QtQml
 import Qt5Compat.GraphicalEffects
+import "."
 
 ColumnLayout {
     id: playerFull
@@ -51,13 +52,17 @@ ColumnLayout {
             anchors.fill: parent
             spacing: 10
 
-            RoundButton {
-                flat: true
-                onClicked: playerFull.anchors.topMargin = playerFull.height
-                icon.width: 20
-                icon.height: 20
-                icon.source: "../../../asset/icon/arrow-down.svg"
+            RowLayout {
                 Layout.alignment: Qt.AlignRight
+                spacing: 3
+
+                RoundButton {
+                    flat: true
+                    onClicked: playerFull.anchors.topMargin = playerFull.height
+                    icon.width: 20
+                    icon.height: 20
+                    icon.source: "../../../asset/icon/arrow-down.svg"
+                }
             }
 
             Image {
@@ -116,6 +121,7 @@ ColumnLayout {
                     icon.width: 40
                     icon.height: 40
                     onClicked: player.prev()
+                    AppToolTip { tipText: "Prev"; visible: parent.hovered; }
                 }
 
                 RoundButton {
@@ -131,6 +137,11 @@ ColumnLayout {
                             player.resume()
                         }
                     }
+                    AppToolTip {
+                        id: playTip
+                        tipText: playState == "playing" ? "Pause" : "Play"
+                        visible: parent.hovered
+                    }
                 }
 
                 RoundButton {
@@ -140,6 +151,7 @@ ColumnLayout {
                     icon.width: 40
                     icon.height: 40
                     onClicked: player.next()
+                    AppToolTip { tipText: "Next"; visible: parent.hovered; }
                 }
             }
 
@@ -160,6 +172,7 @@ ColumnLayout {
                     icon.width: 26
                     icon.height: 26
                     onClicked: player.shuffle()
+                    AppToolTip { tipText: "Shuffle"; visible: parent.hovered; }
                 }
 
                 RoundButton {
@@ -172,6 +185,7 @@ ColumnLayout {
                     icon.width: 26
                     icon.height: 26
                     onClicked: player.repeat()
+                    AppToolTip { tipText: "Repeat"; visible: parent.hovered; }
                 }
 
                 RowLayout {
@@ -184,9 +198,15 @@ ColumnLayout {
                         icon.width: 30
                         icon.height: 30
                         onClicked: player.silent()
+
+                        AppToolTip {
+                            tipText: "Volume"
+                            visible: parent.hovered
+                        }
                     }
 
                     Slider {
+                        id: volumeSlideItem
                         Layout.preferredWidth: volumeHoverFull.hovered ? 160 : 0
                         Layout.alignment: Qt.AlignRight
                         from: 0
@@ -196,6 +216,12 @@ ColumnLayout {
 
                         Behavior on Layout.preferredWidth {
                             NumberAnimation { duration: 400 }
+                        }
+
+                        AppToolTip {
+                            tipText: parseInt(parent.value)
+                            timeout: 200
+                            visible: parent.pressed
                         }
                     }
 

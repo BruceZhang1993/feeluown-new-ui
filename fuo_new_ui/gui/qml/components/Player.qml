@@ -125,6 +125,7 @@ ColumnLayout {
                 icon.width: 30
                 icon.height: 30
                 onClicked: player.prev()
+                AppToolTip { tipText: "Prev"; visible: parent.hovered; }
             }
 
             RoundButton {
@@ -140,6 +141,7 @@ ColumnLayout {
                         player.resume()
                     }
                 }
+                AppToolTip { id: playerTip; tipText: playState == "playing" ? "Pause" : "Play"; visible: parent.hovered; }
             }
 
             RoundButton {
@@ -149,6 +151,7 @@ ColumnLayout {
                 icon.width: 30
                 icon.height: 30
                 onClicked: player.next()
+                AppToolTip { tipText: "Next"; visible: parent.hovered; }
             }
 
             RoundButton {
@@ -161,6 +164,7 @@ ColumnLayout {
                 icon.width: 26
                 icon.height: 26
                 onClicked: player.shuffle()
+                AppToolTip { tipText: "Shuffle"; visible: parent.hovered; }
             }
 
             RoundButton {
@@ -173,6 +177,7 @@ ColumnLayout {
                 icon.width: 26
                 icon.height: 26
                 onClicked: player.repeat()
+                AppToolTip { tipText: "Repeat"; visible: parent.hovered; }
             }
 
             RowLayout {
@@ -188,6 +193,12 @@ ColumnLayout {
                     icon.width: 30
                     icon.height: 30
                     onClicked: player.silent()
+                    AppToolTip { tipText: "Volume"; visible: parent.hovered; }
+
+                    AppToolTip {
+                        tipText: "Volume"
+                        visible: parent.hovered
+                    }
                 }
 
                 Slider {
@@ -200,6 +211,12 @@ ColumnLayout {
 
                     Behavior on Layout.preferredWidth {
                         NumberAnimation { duration: 400 }
+                    }
+
+                    AppToolTip {
+                        tipText: parseInt(parent.value)
+                        timeout: 200
+                        visible: parent.pressed
                     }
                 }
 
