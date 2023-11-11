@@ -22,6 +22,8 @@ ApplicationWindow {
 
     Tray {}
 
+    FullPlayer { id: playerFull }
+
     ColumnLayout {
         spacing: 0
         anchors.fill: parent
@@ -56,6 +58,11 @@ ApplicationWindow {
         }
 
         Player { id: playerItem }
+
+        TapHandler {
+            target: playerItem
+            onTapped: playerFull.anchors.topMargin = 0
+        }
     }
 
     WebSocket {
