@@ -8,9 +8,13 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = ">=3.11,<3.13"
 pyside6 = "^6.6.0"
-feeluown = {git = "https://github.com/feeluown/FeelUOwn.git"}
+feeluown = { git = "https://github.com/feeluown/FeelUOwn.git" }
 pydantic = "^2.4.2"
-aiohttp = "^3.8.6"
+requests = "^2.31.0"
+browser-cookie3 = {version = "^0.19.1", optional = true}
+
+[tool.poetry.extras]
+cookie = ["browser-cookie3"]
 
 [tool.poetry.group.dev.dependencies]
 sanic = "^23.6.0"
