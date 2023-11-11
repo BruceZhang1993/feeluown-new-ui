@@ -338,7 +338,7 @@ ColumnLayout {
                 }
 
                 Behavior on width {
-                    SmoothedAnimation { duration: 400 }
+                    NumberAnimation { duration: 400 }
                 }
             }
         }
