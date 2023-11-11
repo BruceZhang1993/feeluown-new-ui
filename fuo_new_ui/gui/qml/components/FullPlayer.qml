@@ -37,13 +37,18 @@ ColumnLayout {
         }
     }
 
+    function updateImageSize() {
+        blurCoverFull.height = blurCoverFull.parent.height
+        blurCoverFull.width = blurCoverFull.parent.width
+    }
+
     Item {
         Layout.fillHeight: true
         Layout.fillWidth: true
 
         GaussianBlur {
-            anchors.fill: blurCover
-            source: blurCover
+            anchors.fill: blurCoverFull
+            source: blurCoverFull
             radius: 200
             samples: 401
             z: -97
@@ -51,8 +56,9 @@ ColumnLayout {
         }
 
         Image {
-            id: blurCover
-            anchors.fill: parent
+            id: blurCoverFull
+            width: 0
+            height: 0
             source: playerFull.cover
             fillMode: Image.PreserveAspectCrop
             smooth: true

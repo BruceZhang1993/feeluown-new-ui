@@ -73,8 +73,30 @@ ApplicationWindow {
             target: playerItem
             onTapped: {
                 playerFull.visible = true
+                playerFull.updateImageSize()
                 playerFull.offsetY = 0
             }
+        }
+    }
+
+    property bool needUpdateFullImage: false
+
+    onWidthChanged: {
+        if (playerFull.visible) resizeTimer.running = true
+    }
+
+    onHeightChanged: {
+        if (playerFull.visible) resizeTimer.running = true
+    }
+
+    Timer {
+        id: resizeTimer
+        repeat: false
+        interval: 600
+        running: false
+        onTriggered: {
+            window.needUpdateFullImage = false
+            playerFull.updateImageSize()
         }
     }
 
