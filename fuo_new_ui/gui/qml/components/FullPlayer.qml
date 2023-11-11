@@ -23,6 +23,7 @@ ColumnLayout {
     property var shuffle: player ? player.status.random : false
     property var repeat: player ? player.status.repeat : false
     property var cover: "../../../asset/image/cover.png"
+    property var songProvider: player ? player.status.song.provider : ""
 
     Item {
         Layout.fillHeight: true
@@ -110,6 +111,22 @@ ColumnLayout {
                     text: player ? player.status.song.title : ""
                     font.bold: true
                     color: Material.color(Material.BlueGrey)
+                }
+
+                Label {
+                    Layout.alignment: Qt.AlignHCenter
+                    text: songProvider
+                    font.pointSize: 9
+                    color: "#f0f0f0"
+                    leftPadding: 4
+                    rightPadding: 4
+                    verticalAlignment: Text.AlignBottom
+                    bottomPadding: 2
+
+                    background: Rectangle {
+                        color: Material.color(Material.BlueGrey)
+                        radius: 4
+                    }
                 }
 
                 Text {

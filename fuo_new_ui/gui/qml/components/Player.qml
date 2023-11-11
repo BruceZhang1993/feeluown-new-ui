@@ -87,7 +87,7 @@ ColumnLayout {
                     Label {
                         text: songProvider
                         font.pointSize: 9
-                        color: Material.color(Material.BlueGrey)
+                        color: "#f0f0f0"
                         leftPadding: 4
                         rightPadding: 4
                         verticalAlignment: Text.AlignBottom
@@ -95,8 +95,8 @@ ColumnLayout {
                         Layout.alignment: Qt.AlignBottom
 
                         background: Rectangle {
-                            color: "transparent"
-                            border.color: Material.color(Material.Grey)
+                            color: Material.color(Material.BlueGrey)
+                            radius: 4
                         }
                     }
                 }
