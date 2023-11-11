@@ -43,6 +43,9 @@ class FuoApp(QApplication):
         self.setWindowIcon(QIcon(QPixmap('icons:feeluown.png')))
         self.setDesktopFileName(const.APP_NAME)
         self.setQuitOnLastWindowClosed(not self._gui_config.tray_enable)
+        self.setOrganizationName("FeelUOwn Team")
+        self.setOrganizationDomain("feeluown.github.io")
+        self.setApplicationName(const.APP_NAME)
         if const.IS_WINDOWS:
             font = self.font()
             font.setFamilies(['Segoe UI Symbol', 'Microsoft YaHei', 'sans-serif'])

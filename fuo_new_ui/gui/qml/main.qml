@@ -1,9 +1,10 @@
-import QtQuick 2.15
-import QtQuick.Window 2.15
-import QtQuick.Layouts 1.15
-import QtQuick.Controls 2.15
-import QtQuick.Controls.Material 2.15
-import QtWebSockets 1.6
+import QtCore
+import QtQuick
+import QtQuick.Window
+import QtQuick.Layouts
+import QtQuick.Controls
+import QtQuick.Controls.Material
+import QtWebSockets
 import "./components"
 
 ApplicationWindow {
@@ -12,6 +13,13 @@ ApplicationWindow {
     width: Screen.width / 1.8
     height: Screen.height / 1.5
     title: player ? player.const["APP_NAME"] : ""
+
+    Settings {
+        property alias x: window.x
+        property alias y: window.y
+        property alias width: window.width
+        property alias height: window.height
+    }
 
     property bool darkMode: systemPalette.windowText.hsvValue > systemPalette.window.hsvValue
     Material.theme: darkMode ? Material.Dark : Material.Light

@@ -7,6 +7,9 @@ SystemTrayIcon {
 
     menu: Menu {
         MenuItem {
+            text: qsTr("Settings")
+        }
+        MenuItem {
             text: qsTr("Quit")
             onTriggered: Qt.quit()
         }
