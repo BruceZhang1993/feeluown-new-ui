@@ -27,8 +27,8 @@ ColumnLayout {
         GaussianBlur {
             anchors.fill: blurCover
             source: blurCover
-            radius: 100
-            samples: 201
+            radius: 200
+            samples: 401
             z: -98
             cached: true
         }
@@ -41,6 +41,8 @@ ColumnLayout {
             opacity: 0.7
             smooth: true
             visible: false
+            sourceSize.width: 100
+            sourceSize.height: 100
             z: -99
         }
 

@@ -11,19 +11,23 @@ ColumnLayout {
     id: playerFull
     visible: true
     anchors.fill: parent
-    anchors.topMargin: height
     spacing: 0
     z: 100
-
-    Behavior on anchors.topMargin {
-        SmoothedAnimation { duration: 300 }
-    }
 
     property var playState: player ? player.status.state : null
     property var shuffle: player ? player.status.random : false
     property var repeat: player ? player.status.repeat : false
     property var cover: "../../../asset/image/cover.png"
     property var songProvider: player ? player.status.song.provider : ""
+    property var offsetY: height
+
+    transform: Translate {
+        y: offsetY
+
+        Behavior on y {
+            SmoothedAnimation { duration: 500 }
+        }
+    }
 
     Item {
         Layout.fillHeight: true
@@ -43,9 +47,10 @@ ColumnLayout {
             anchors.fill: parent
             source: playerFull.cover
             fillMode: Image.PreserveAspectCrop
-            opacity: 0.7
             smooth: true
             visible: false
+            sourceSize.width: 100
+            sourceSize.height: 100
             z: -99
         }
 
@@ -77,7 +82,7 @@ ColumnLayout {
 
                 RoundButton {
                     flat: true
-                    onClicked: playerFull.anchors.topMargin = playerFull.height
+                    onClicked: playerFull.offsetY = playerFull.height
                     icon.width: 20
                     icon.height: 20
                     icon.color: Material.color(Material.Grey)
@@ -251,7 +256,7 @@ ColumnLayout {
                         handle: null
 
                         Behavior on Layout.preferredWidth {
-                            NumberAnimation { duration: 400 }
+                            SmoothedAnimation { duration: 400 }
                         }
 
                         AppToolTip {
@@ -333,7 +338,7 @@ ColumnLayout {
                 }
 
                 Behavior on width {
-                    NumberAnimation { duration: 400 }
+                    SmoothedAnimation { duration: 400 }
                 }
             }
         }

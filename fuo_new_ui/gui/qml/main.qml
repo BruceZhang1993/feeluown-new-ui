@@ -71,7 +71,7 @@ ApplicationWindow {
 
         TapHandler {
             target: playerItem
-            onTapped: playerFull.anchors.topMargin = 0
+            onTapped: playerFull.offsetY = 0
         }
     }
 
