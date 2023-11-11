@@ -30,6 +30,8 @@ ApplicationWindow {
 
     Tray {}
 
+    Setting { id: settingDialog }
+
     FullPlayer { id: playerFull }
 
     ColumnLayout {

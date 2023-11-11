@@ -17,6 +17,8 @@ ColumnLayout {
     property var shuffle: player ? player.status.random : false
     property var repeat: player ? player.status.repeat : false
     property var cover: "../../../asset/image/cover.png"
+    property var songName: player ? player.status.song.title : ""
+    property var songProvider: player ? player.status.song.provider : ""
 
     Item {
         Layout.fillHeight: true
@@ -72,7 +74,7 @@ ColumnLayout {
                 Text {
                     font.pointSize: 12
                     topPadding: 4
-                    text: player ? player.status.song.title : ""
+                    text: playerMain.songName
                     font.bold: true
                     color: Material.color(Material.BlueGrey)
                 }

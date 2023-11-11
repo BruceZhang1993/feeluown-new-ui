@@ -1,6 +1,7 @@
 import Qt.labs.platform
 
 SystemTrayIcon {
+    id: appTray
     visible: config ? config.trayEnable : false
     icon.name: "feeluown"
     tooltip: "FeelUOwn"
@@ -8,6 +9,7 @@ SystemTrayIcon {
     menu: Menu {
         MenuItem {
             text: qsTr("Settings")
+            onTriggered: settingDialog.show()
         }
         MenuItem {
             text: qsTr("Quit")
