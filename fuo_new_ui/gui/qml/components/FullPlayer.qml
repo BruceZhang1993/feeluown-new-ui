@@ -9,7 +9,7 @@ import "."
 
 ColumnLayout {
     id: playerFull
-    visible: true
+    visible: false
     anchors.fill: parent
     spacing: 0
     z: 100
@@ -22,10 +22,18 @@ ColumnLayout {
     property var offsetY: height
 
     transform: Translate {
+        id: playerFullTranslate
         y: offsetY
 
         Behavior on y {
-            SmoothedAnimation { duration: 500 }
+            SmoothedAnimation {
+                duration: 500
+                onRunningChanged: {
+                    if (!running && playerFullTranslate.y > 0) {
+                        playerFull.visible = false
+                    }
+                }
+            }
         }
     }
 

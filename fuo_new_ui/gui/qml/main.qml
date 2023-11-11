@@ -71,7 +71,10 @@ ApplicationWindow {
 
         TapHandler {
             target: playerItem
-            onTapped: playerFull.offsetY = 0
+            onTapped: {
+                playerFull.visible = true
+                playerFull.offsetY = 0
+            }
         }
     }
 
