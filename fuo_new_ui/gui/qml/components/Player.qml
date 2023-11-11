@@ -68,15 +68,37 @@ ColumnLayout {
             ColumnLayout {
                 Layout.fillHeight: true
                 Layout.preferredWidth: 100
-                spacing: 3
+                spacing: 4
                 Layout.alignment: Qt.AlignTop
 
-                Text {
-                    font.pointSize: 12
-                    topPadding: 4
-                    text: playerMain.songName
-                    font.bold: true
-                    color: Material.color(Material.BlueGrey)
+                RowLayout {
+                    spacing: 6
+
+                    Text {
+                        font.pointSize: 12
+                        topPadding: 4
+                        text: playerMain.songName
+                        font.bold: true
+                        color: Material.color(Material.BlueGrey)
+                        Layout.alignment: Qt.AlignBottom
+                        verticalAlignment: Text.AlignBottom
+                    }
+
+                    Label {
+                        text: songProvider
+                        font.pointSize: 9
+                        color: Material.color(Material.BlueGrey)
+                        leftPadding: 4
+                        rightPadding: 4
+                        verticalAlignment: Text.AlignBottom
+                        bottomPadding: 2
+                        Layout.alignment: Qt.AlignBottom
+
+                        background: Rectangle {
+                            color: "transparent"
+                            border.color: Material.color(Material.Grey)
+                        }
+                    }
                 }
 
                 Text {
