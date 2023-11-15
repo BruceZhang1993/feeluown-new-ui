@@ -20,6 +20,17 @@ poetry install
 poetry run feeluown-gui
 ```
 
+## Screenshots
+
+### Player
+
+#### Bottom
+![图片](https://github.com/BruceZhang1993/feeluown-new-ui/assets/6873988/44bf4eb9-8d22-4568-874f-66ad4b5f5c20)
+
+#### Full
+![图片](https://github.com/BruceZhang1993/feeluown-new-ui/assets/6873988/4ba50f0d-4e57-49c4-8352-288e1e16368d)
+
+
 ## Features
 
 - [x] Basic layout design
