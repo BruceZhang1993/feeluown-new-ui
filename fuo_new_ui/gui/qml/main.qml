@@ -118,6 +118,9 @@ ApplicationWindow {
             var needUpdateState = ["player.metadata_changed", "player.state_changed", "player.duration_changed", "player.seeked"]
             if (needUpdateState.includes(object.topic)) {
                 player.updateState()
+                if ("player.metadata_changed" == object.topic) {
+                    player.updateSongInfo()
+                }
             } else if (object.topic == "live_lyric.sentence_changed") {
                 var data = JSON.parse(object.data)
                 innerLyric.text = data.join(" ")

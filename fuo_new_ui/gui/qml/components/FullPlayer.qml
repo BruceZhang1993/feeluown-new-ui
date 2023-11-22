@@ -17,7 +17,7 @@ ColumnLayout {
     property var playState: player ? player.status.state : null
     property var shuffle: player ? player.status.random : false
     property var repeat: player ? player.status.repeat : false
-    property var cover: "../../../asset/image/cover.png"
+    property var cover: player ? (player.current_song.artwork ? player.current_song.artwork : "../../../asset/image/cover.png") : "../../../asset/image/cover.png"
     property var songProvider: player ? player.status.song.provider : ""
     property var offsetY: height
 

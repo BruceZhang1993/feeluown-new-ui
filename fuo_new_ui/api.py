@@ -53,10 +53,19 @@ class FuoApi:
         """ mode: off/songs """
         print(mode)
         with self._session.post(self.BASE_URI + '/rpc/v1',
-                                json=self._build_payload('lambda mode: setattr(app.playlist, "shuffle_mode", mode)', [mode])) as r:
+                                json=self._build_payload('lambda mode: setattr(app.playlist, "shuffle_mode", mode)',
+                                                         [mode])) as r:
             print(r.json())
+            return
+
+    def current_song_info(self):
+        with self._session.post(self.BASE_URI + '/rpc/v1',
+                                json=self._build_payload('lambda: app.player.current_metadata', None)) as r:
+            data = r.json()['result']
+            print(r.json())
+            self._context.current_song = data
             return
 
 
 if __name__ == '__main__':
-    FuoApi(None).next()
+    FuoApi(None).current_song_info()
