@@ -189,7 +189,7 @@ ColumnLayout {
                 icon.color: Material.color(Material.Grey)
                 icon.width: 26
                 icon.height: 26
-                onClicked: player.shuffle()
+                onClicked: player.shuffle(playerMain.shuffle ? "off" : "songs")
                 AppToolTip { tipText: "Shuffle"; visible: parent.hovered; }
             }
 

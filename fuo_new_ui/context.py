@@ -44,3 +44,16 @@ class PlayerContext(QObject):
     @Slot()
     def resume(self):
         self._api.resume()
+
+    @Slot()
+    def next(self):
+        self._api.next()
+
+    @Slot()
+    def prev(self):
+        self._api.previous()
+
+    @Slot(str)
+    def shuffle(self, mode):
+        self._api.shuffle_mode(mode)
+        self.updateState()
